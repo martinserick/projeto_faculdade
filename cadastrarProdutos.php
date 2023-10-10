@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <input type="text" name="prodMarca" id="prodMarca" class="form-control" required>
 
                     <label for="prodQuantidade" class="form-label">Quantidade</label>
-                    <input type="number" name="prodQuantidade" id="prodQuantidade" class="form-control" required>
+                    <input type="number" name="prodQuantidade" id="prodQuantidade" class="form-control" required step='any'>
 
                     <input type="submit" value="Enviar" class="btn btn-primary mt-3">
                     <a href="listarProdutos.php"><button type="button" class="btn btn-danger mt-3">Cancelar</button></a>

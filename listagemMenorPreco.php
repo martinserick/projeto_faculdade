@@ -50,7 +50,7 @@
                         foreach ($listagem as $valor) {
                             echo '<tr>';?>
                             <td><?php echo $valor['nome']; ?></td>
-                            <td><?php echo $valor['prodestabPreco']; ?></td>
+                            <td>R$<?php echo $valor['prodestabPreco']; ?></td>
                         <?php echo '</tr>';  }?>
                 </tbody>
             </table>
