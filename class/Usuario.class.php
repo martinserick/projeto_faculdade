@@ -62,12 +62,12 @@ class Usuario{
 
     public function logarUsuario($dados)
     {
-        $this->setusuEmail($dados['email']);
+        $this->setusuNome($dados['usuario']);
         $this->setusuSenha(sha1($dados['senha']));
         try {
 
-			$cst = $this->con->conectar()->prepare("SELECT `nome`, `email`, `senha` FROM `usuarios` WHERE `email` = :email AND `senha` = :senha;");
-			$cst->bindParam(':email', $this->usuEmail, PDO::PARAM_STR);
+			$cst = $this->con->conectar()->prepare("SELECT `nome`, `email`, `senha` FROM `usuarios` WHERE `nome` = :nome AND `senha` = :senha;");
+			$cst->bindParam(':nome', $this->usuNome, PDO::PARAM_STR);
 			$cst->bindParam(':senha', $this->usuSenha, PDO::PARAM_STR);
 			$cst->execute();
 			if($cst->rowCount() == 0){

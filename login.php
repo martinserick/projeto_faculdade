@@ -26,8 +26,7 @@ if (isset($_POST['btLogar'])) {
                 <div id="areaLogin">
                     <h3>Login</h3>
                     <form action="" method="post">
-                        <input type="text" name="email" class="form-control" placeholder="E-mail" required="required"
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                        <input type="text" name="usuario" class="form-control" placeholder="Usuário" required="required">
                         <input type="password" name="senha" class="form-control" placeholder="Senha">
                         <div class="form-group">
                             <button type="submit" name="btLogar" class="btn btn-primary btn-block mt-2">Logar</button>

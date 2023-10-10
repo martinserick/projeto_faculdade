@@ -1,4 +1,4 @@
--- Adminer 4.8.1 MySQL 5.7.43 dump
+-- Adminer 4.8.1 MySQL 5.7.42 dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -50,7 +50,8 @@ INSERT INTO `produtos` (`id`, `nome`, `marca`, `quantidade`) VALUES
 (26,	'Detergente',	'Minuano',	1),
 (27,	'Sabonete',	'Phebo',	1),
 (28,	'Sabão em pó',	'OMO',	1),
-(29,	'Queijo',	'Seara',	200);
+(29,	'Queijo',	'Seara',	200),
+(30,	'Xicara',	'Tramontina',	1);
 
 DROP TABLE IF EXISTS `produto_estabelecimento`;
 CREATE TABLE `produto_estabelecimento` (
@@ -80,7 +81,9 @@ INSERT INTO `produto_estabelecimento` (`prodestabId`, `prodId`, `estabId`, `prod
 (16,	2,	7,	4.99),
 (17,	20,	2,	10.09),
 (18,	4,	7,	8.5),
-(19,	23,	1,	6.99);
+(19,	23,	1,	6.99),
+(20,	30,	4,	14.95),
+(21,	30,	6,	14.9);
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
@@ -92,6 +95,6 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`) VALUES
-(1,	'Erick Martins',	'erick.martins@diprotec.com.br',	'7c4a8d09ca3762af61e59520943dc26494f8941b');
+(2,	'admin',	'admin@admin',	'd033e22ae348aeb5660fc2140aec35850c4da997');
 
--- 2023-10-10 21:16:40
+-- 2023-10-10 21:57:02
