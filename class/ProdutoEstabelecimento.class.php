@@ -66,6 +66,8 @@ class ProdutoEstabelecimento
     public function listarProdutosEstabelecimentos($dado)
     {
         $this->setestabId($dado['estabId']);
+        $sql_mode = $this->con->conectar()->prepare('SET sql_mode="";');
+        $sql_mode->execute();
         try {
             $cst = $this->con->conectar()->prepare('
             SELECT p.nome, p.marca, e.nome AS estabelecimento, ep.prodestabPreco
