@@ -18,9 +18,9 @@
 </head>
 <body>
    <div class="container">
-    <div class="row justify-content-center align-items-center text-center">
+    <div class="row justify-content-center align-items-center text-center mt-5">
         <div class="col-8">
-            <h1>Listagem de Produtos</h1>
+            <h1 class="mb-3">Listagem de Produtos</h1>
             <table class="table table-hover">
                 <thead>
                     <tr>

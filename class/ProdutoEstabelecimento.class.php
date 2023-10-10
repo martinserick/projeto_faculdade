@@ -1,7 +1,8 @@
 <?php
 include_once "sql.php";
 
-class ProdutoEstabelecimento{
+class ProdutoEstabelecimento
+{
 
     private $prodestabId;
     private $prodId;
@@ -9,71 +10,90 @@ class ProdutoEstabelecimento{
     private $prodestabPreco;
     private $con;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->con = new Sql();
     }
 
-    public function getprodestabId(){
+    public function getprodestabId()
+    {
         return $this->prodestabId;
     }
-    public function setprodestabId($id){
+    public function setprodestabId($id)
+    {
         $this->prodestabId = $id;
     }
-    public function getprodId(){
+    public function getprodId()
+    {
         return $this->prodId;
     }
 
-    public function setprodId($id){
+    public function setprodId($id)
+    {
         $this->prodId = $id;
     }
 
-    public function getestabId(){
+    public function getestabId()
+    {
         return $this->estabId;
     }
 
-    public function setestabId($id){
+    public function setestabId($id)
+    {
         $this->estabId = $id;
     }
 
-    public function getprodestabPreco(){
+    public function getprodestabPreco()
+    {
         return $this->prodestabPreco;
     }
 
-    public function setprodestabPreco($preco){
+    public function setprodestabPreco($preco)
+    {
         $this->prodestabPreco = $preco;
     }
 
     //Fim do geters e seters
 
-    public function __toString(){
-        return "ID: ". $this->getprodestabId() . "<br>
-                Produto:" . $this->getprodId() ."<br>
+    public function __toString()
+    {
+        return "ID: " . $this->getprodestabId() . "<br>
+                Produto:" . $this->getprodId() . "<br>
                 Estabelecimento:" . $this->getestabId() . "<br>
                 Preço:" . $this->getprodestabPreco() . "<br>";
     }
 
-    public function listarProdutosEstabelecimentos($dado){
+    public function listarProdutosEstabelecimentos($dado)
+    {
         $this->setestabId($dado['estabId']);
-        try{
+        try {
             $cst = $this->con->conectar()->prepare('
-            SELECT p.nome, pe.prodestabPreco
-            FROM produto_estabelecimento as pe
-            JOIN products p ON p.id = pe.prodId
-            JOIN estabelecimentos e ON e.id = pe.estabId
+            SELECT p.nome, p.marca, e.nome AS estabelecimento, ep.prodestabPreco
+            FROM produtos p
+            JOIN produto_estabelecimento ep ON p.id = ep.prodId
+            JOIN estabelecimentos e ON ep.estabId = e.id
+            JOIN
+            (
+                SELECT prodId, MIN(prodestabPreco) AS menor_preco
+                FROM produto_estabelecimento
+                GROUP BY prodId
+            )
+            ep_min ON ep.prodId = ep_min.prodId
             WHERE e.id = :id
+            AND ep.prodestabPreco = ep_min.menor_preco;
         ');
             $cst->bindParam(":id", $this->estabId, PDO::PARAM_INT);
-            if($cst->execute()){
+            if ($cst->execute()) {
 
-            }else{
+            } else {
 
             }
             $rst = $cst->fetchAll();
             return $rst;
-        }catch (PDOException $e){
-            return 'Error: '.$e->getMessage();
+        } catch (PDOException $e) {
+            return 'Error: ' . $e->getMessage();
         }
-	}
+    }
 
     public function cadastraPrecoEstabelecimento($dados)
     {
@@ -82,22 +102,22 @@ class ProdutoEstabelecimento{
         $this->setprodestabPreco($dados['prodestabPreco']);
         try {
 
-			$cst = $this->con->conectar()->prepare("INSERT INTO `produto_estabelecimento` (`prodId`, `estabId`, `prodestabPreco`)
+            $cst = $this->con->conectar()->prepare("INSERT INTO `produto_estabelecimento` (`prodId`, `estabId`, `prodestabPreco`)
                                                     VALUES (:prodId, :estabId, :prodestabPreco);");
-			$cst->bindParam(":prodId", $this->prodId, PDO::PARAM_INT);
-			$cst->bindParam(":estabId", $this->estabId, PDO::PARAM_INT);
-			$cst->bindParam(":prodestabPreco", $this->prodestabPreco, PDO::PARAM_STR);
-			if($cst->execute()){
+            $cst->bindParam(":prodId", $this->prodId, PDO::PARAM_INT);
+            $cst->bindParam(":estabId", $this->estabId, PDO::PARAM_INT);
+            $cst->bindParam(":prodestabPreco", $this->prodestabPreco, PDO::PARAM_STR);
+            if ($cst->execute()) {
                 return true;
+            } else {
+                return false;
             }
-            else{
-				return false;
-			}
         } catch (PDOException $e) {
-            return 'Error: '.$e->getMessage();
+            return 'Error: ' . $e->getMessage();
         }
 
 
     }
 }
 ?>
+

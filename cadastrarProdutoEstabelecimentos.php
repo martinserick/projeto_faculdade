@@ -12,7 +12,7 @@ $listProd = $prod->listarProdutos();
 $listEstab = $estab->listarEstabelecimentos();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $prodEstab->cadastraPrecoEstabelecimento($_POST);
+    $cad_result = $prodEstab->cadastraPrecoEstabelecimento($_POST);
 }
 
 ?>
@@ -34,13 +34,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <form action="#" method="POST">
                     <label for="prodId" class="form-label required">Produto</label>
                     <select name="prodId" id="prodId" class="form-select">
+                    <option selected disabled>Selecione...</option>
                     <?php foreach ($listProd as $prod) { ?>
-                        <option value="<?php echo $prod['id']; ?>"><?php echo $prod['nome'];?></option>
+                        <option value="<?php echo $prod['id']; ?>"><?php echo $prod['nome'] .' - ' . $prod['marca'];?></option>
                     <?php }?>
                     </select>
 
                     <label for="estabId" class="form-label required">Estabelecimento</label>
                     <select name="estabId" id="estabId" class="form-select">
+                    <option selected disabled>Selecione...</option>
                     <?php foreach ($listEstab as $estab) { ?>
                         <option value="<?php echo $estab['id']; ?>"><?php echo $estab['nome'];?></option>
                     <?php }?>
@@ -55,6 +57,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             </div>
         </div>
     </div>
-
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/notify.js"></script>
+    <script>
+            <?php if($cad_result){?>
+                $.notify("Preço Cadastrado com sucesso!", "success");
+            <?php } ?>
+    </script>
 </body>
 </html>

@@ -53,7 +53,7 @@ class Usuario{
     }
 
     public function usuarioLogado($dado){
-		$cst = $this->con->conectar()->prepare("SELECT `id`, `nome`, `email` FROM `users` WHERE `id` = :idUser;");
+		$cst = $this->con->conectar()->prepare("SELECT `id`, `nome`, `email` FROM `usuarios` WHERE `id` = :idUser;");
 		$cst->bindParam(':idUser', $dado, PDO::PARAM_INT);
 		$cst->execute();
 		$rst = $cst->fetch();
@@ -66,7 +66,7 @@ class Usuario{
         $this->setusuSenha(sha1($dados['senha']));
         try {
 
-			$cst = $this->con->conectar()->prepare("SELECT `nome`, `email`, `senha` FROM `users` WHERE `email` = :email AND `senha` = :senha;");
+			$cst = $this->con->conectar()->prepare("SELECT `nome`, `email`, `senha` FROM `usuarios` WHERE `email` = :email AND `senha` = :senha;");
 			$cst->bindParam(':email', $this->usuEmail, PDO::PARAM_STR);
 			$cst->bindParam(':senha', $this->usuSenha, PDO::PARAM_STR);
 			$cst->execute();

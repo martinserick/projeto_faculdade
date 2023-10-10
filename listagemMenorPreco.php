@@ -32,29 +32,37 @@
             <form action="#" method="POST">
             <label for="estabId" class="form-label required">Estabelecimento</label>
                     <select name="estabId" id="estabId" class="form-select">
+                        <option selected disabled>Selecione...</option>
                     <?php foreach ($listEstab as $estab) { ?>
                         <option value="<?php echo $estab['id']; ?>"><?php echo $estab['nome'];?></option>
                     <?php }?>
                     </select>
                     <input type="submit" class="btn btn-primary mt-3" value="Buscar">
             </form>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Nome Produto</th>
-                        <th>Preço</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        foreach ($listagem as $valor) {
-                            echo '<tr>';?>
-                            <td><?php echo $valor['nome']; ?></td>
-                            <td>R$<?php echo $valor['prodestabPreco']; ?></td>
-                        <?php echo '</tr>';  }?>
-                </tbody>
-            </table>
-            <a class="self-align-start" href="menu.php"><button class="btn btn-secondary">Voltar</button></a>
+            <div class="" id="menoresPrecos">
+                <h2 class="m-3">Estabelecimento: <?php echo $listagem[0]['estabelecimento']; ?></h2>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome Produto</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
+                        if(empty($listagem)){
+                            echo "<tr><td class='text-center'>Sem produtos cadastrados, ou sem preços promocionais!</td><td></td></tr>";
+                        }else{
+                            foreach ($listagem as $valor) {
+                                echo '<tr>';?>
+                                <td><?php echo $valor['nome'] . ' - ' . $valor['marca']; ?></td>
+                                <td>R$<?php echo $valor['prodestabPreco']; ?></td>
+                            <?php echo '</tr>';  }}?>
+                    </tbody>
+                </table>
+                <a class="self-align-start" href="menu.php"><button class="btn btn-secondary">Voltar</button></a>
+            </div>
         </div>
     </div>
    </div>

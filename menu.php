@@ -12,7 +12,7 @@ require_once "validaUsuario.php";
     <title>Menu - Sistema de Preços</title>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <div class="row justify-content-end">
             <div class="col self-align-end">
                 <a href="?sair=sim" class="btn btn-danger">Sair</a>
@@ -27,7 +27,7 @@ require_once "validaUsuario.php";
                     <li><a href="listarProdutos.php" class="btn btn-primary m-2">Listagem de Produtos</a></li>
                     <li><a href="listarEstabelcimentos.php" class="btn btn-primary m-2">Listagem de Estabelecimentos</a></li>
                     <li><a href="cadastrarProdutoEstabelecimentos.php" class="btn btn-primary m-2">Cadastro de Preços</a></li>
-                    <li><a href="listagemMenorPreco.php" class="btn btn-primary">Menores Preços</a></li>
+                    <li><a href="listagemMenorPreco.php" class="btn btn-primary m-2">Menores Preços</a></li>
                 </ul>
             </div>
         </div>

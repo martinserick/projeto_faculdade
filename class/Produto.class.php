@@ -53,7 +53,7 @@ class Produto{
     }
 
     public function listarProdutos(){
-		$cst = $this->con->conectar()->prepare("SELECT * FROM `products`;");
+		$cst = $this->con->conectar()->prepare("SELECT * FROM `produtos`;");
 		if($cst->execute()){
 
         }
@@ -68,7 +68,7 @@ class Produto{
         $this->setprodQuantidade($dados['prodQuantidade']);
         try {
 
-			$cst = $this->con->conectar()->prepare("INSERT INTO `products` (`nome`, `marca`, `quantidade`)
+			$cst = $this->con->conectar()->prepare("INSERT INTO `produtos` (`nome`, `marca`, `quantidade`)
                                                     VALUES (:nome, :marca, :quantidade);");
 			$cst->bindParam(":nome", $this->prodNome, PDO::PARAM_STR);
 			$cst->bindParam(":marca", $this->prodMarca, PDO::PARAM_STR);

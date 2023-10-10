@@ -5,7 +5,7 @@ require_once "./class/Produto.class.php";
 $prod = new Produto();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $prod->cadastraProduto($_POST);
+    $cad_result = $prod->cadastraProduto($_POST);
 }
 
 ?>
@@ -40,6 +40,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             </div>
         </div>
     </div>
-
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/notify.js"></script>
+    <script>
+            <?php if($cad_result){?>
+                $.notify("Produto Cadastrado com sucesso!", "success");
+            <?php } ?>
+    </script>
 </body>
 </html>

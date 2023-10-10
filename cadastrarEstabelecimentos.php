@@ -5,7 +5,7 @@ require_once "./class/Estabelecimento.class.php";
 $estab = new Estabelecimento();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $estab->cadastraEstabelecimento($_POST);
+    $cad_result = $estab->cadastraEstabelecimento($_POST);
 }
 
 ?>
@@ -43,6 +43,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             </div>
         </div>
     </div>
-
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/notify.js"></script>
+    <script>
+            <?php if($cad_result){?>
+                $.notify("Estabelecimento Cadastrado com sucesso!", "success");
+            <?php } ?>
+    </script>
 </body>
 </html>
