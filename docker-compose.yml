@@ -17,6 +17,8 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - ./db/discursiva.sql:/docker-entrypoint-initdb.d/discursiva.sql
 
   adminer:
     image: adminer
