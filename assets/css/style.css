@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#areaLogin{
+    background-color: lightgray;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#actionMenuList{
+    list-style-type: none;
+}

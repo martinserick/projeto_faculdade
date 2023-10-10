@@ -71,14 +71,14 @@ class Usuario{
 			$cst->bindParam(':senha', $this->usuSenha, PDO::PARAM_STR);
 			$cst->execute();
 			if($cst->rowCount() == 0){
-				header('location: login/?login=error');
+				header('location: /login.php?login=error');
 			}else{
 				session_start();
 				$rst = $cst->fetch();
 				$_SESSION['logado'] = "sim";
                 $_SESSION['user'] = $rst['id'];
 				$_SESSION['nome'] = $rst['nome'];
-				header("location: /admin.php");
+				header("location: /menu.php");
 			}
         } catch (PDOException $e) {
             return 'Error: '.$e->getMessage();
@@ -89,7 +89,7 @@ class Usuario{
 
     public function logoutUsuario(){
         session_destroy();
-        header ('location: /index.php');
+        header ('location: /login.php');
     }
 
 
